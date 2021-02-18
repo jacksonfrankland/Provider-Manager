@@ -14,7 +14,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        return view('providers.index', Provider::get());
     }
 
     /**
@@ -24,7 +24,10 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        //
+        return view('providers.edit', [
+            'new' => true,
+            'provider' => Provider::make(),
+        ]);
     }
 
     /**
@@ -35,7 +38,7 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -57,7 +60,10 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider)
     {
-        //
+        return view('providers.edit', [
+            'new' => false,
+            'provider' => $provider,
+        ]);
     }
 
     /**
@@ -69,7 +75,21 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $provider->update($request->only([
+            'trading_name',
+            'company_name',
+            'abn',
+            'street_address',
+            'city',
+            'state',
+            'post_code',
+            'primary_contact_name',
+            'primary_contact_phone_number',
+            'primary_contact_email',
+            'secondary_contact_name',
+            'secondary_contact_phone_number',
+            'secondary_contact_email',
+        ]));
     }
 
     /**
@@ -80,6 +100,6 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
     }
 }
