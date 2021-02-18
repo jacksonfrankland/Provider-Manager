@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <title>Laravel</title>
 
@@ -20,11 +21,9 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            <div class="max-w-2xl px-8 py-4 mx-auto bg-white rounded-lg shadow-md">
-            @yield('content');
-            </div>
+    <body class="antialiased bg-gray-500 flex">
+        <div class="container mx-auto mt-12">
+            @yield('content')
         </div>
     </body>
 </html>

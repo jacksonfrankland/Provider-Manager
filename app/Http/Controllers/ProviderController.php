@@ -14,7 +14,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        return view('providers.index', Provider::get());
+        return view('providers.index', [
+            'providers' => Provider::get(),
+        ]);
     }
 
     /**
@@ -38,18 +40,22 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Provider  $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Provider $provider)
-    {
-        //
+        Provider::create($request->only([
+            'trading_name',
+            'company_name',
+            'abn',
+            'street_address',
+            'city',
+            'state',
+            'post_code',
+            'primary_contact_name',
+            'primary_contact_phone_number',
+            'primary_contact_email',
+            'secondary_contact_name',
+            'secondary_contact_phone_number',
+            'secondary_contact_email',
+        ]));
+        return redirect('/providers');
     }
 
     /**
@@ -90,6 +96,7 @@ class ProviderController extends Controller
             'secondary_contact_phone_number',
             'secondary_contact_email',
         ]));
+        return redirect('/providers');
     }
 
     /**
@@ -101,5 +108,6 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         $provider->delete();
+        return redirect()->back();
     }
 }

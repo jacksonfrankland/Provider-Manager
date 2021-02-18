@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
+    protected $guarded = [];
+
     public function getActiveAttribute($value)
     {
         $basicDetailsProvided = $this->company_name && $this->trading_name && $this->abn;
